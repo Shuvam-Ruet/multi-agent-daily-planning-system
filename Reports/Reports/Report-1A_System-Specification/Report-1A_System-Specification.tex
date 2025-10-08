@@ -1,0 +1,114 @@
+\documentclass[12pt,oneside]{report}
+
+% ---------- Packages ----------
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes, fit}
+
+% ---------- Colors & links ----------
+\definecolor{ABSEBlue}{HTML}{0F6FC6}
+\definecolor{ABSEGray}{HTML}{4D5866}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ABSEBlue,
+  urlcolor=ABSEBlue,
+  citecolor=ABSEBlue
+}
+
+% ---------- Header / Footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{Multi-Agent Daily Planning System (MADPS)}}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Title Format ----------
+\titleformat{\chapter}{\Large\bfseries\color{ABSEBlue}}{\thechapter.}{0.5em}{}
+\titleformat{\section}{\large\bfseries\color{ABSEGray}}{\thesection}{0.5em}{}
+
+% ---------- Code style ----------
+\lstdefinestyle{code}{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  breaklines=true,
+  columns=fullflexible
+}
+
+% ---------- Title ----------
+\begin{document}
+\begin{titlepage}
+  \centering
+  {\Large \textbf{SENG 696 — Agent-Based Software Engineering}\par}
+  \vspace{1.5cm}
+  {\huge \textbf{Multi-Agent Daily Planning System (MADPS)}\par}
+  \vspace{1.3cm}
+  {\Large \textbf{Report 1A}\par}
+  {\Large \textbf{System Specification}\par}
+  \vspace{1.2cm}
+  {\large Ali Mohammadi Ruzbahani [30261140], Shuvam Agarwala [30290444]\par}
+  \vspace{1.2cm}
+  {\large \textbf{Course} \par}
+  {\large \textbf{Agent-Based Software Engineering (SENG 696)} \par}
+  \vspace{1.2cm}
+  {\large \textbf{Instructor:} Professor Behrouz Far\par}
+   \vspace{2.2cm}
+
+  {\large \textbf{Date:} \today\par}
+  \vfill
+
+\end{titlepage}
+
+\tableofcontents
+\onehalfspacing
+\clearpage
+
+% =====================================
+% 1A. System Specification (Short Doc)
+% =====================================
+\chapter*{1A. System Specification}
+\addcontentsline{toc}{chapter}{1A. System Specification}
+
+\section{Overview}
+\textbf{System Name:} MADPS — Multi-Agent Daily Planning System.\\
+\textbf{Primary Users:} Individuals (students/professionals) planning their daily schedule.\\
+\textbf{Context:} Web/desktop UI with local agent processes.
+
+\section{Scope \& Functionalities}
+\begin{itemize}[leftmargin=1.2cm]
+  \item \textbf{Task Intake \& Management:} Create/edit tasks, deadlines, dependencies, effort estimates, tags.
+  \item \textbf{User Modeling:} Learn energy/productivity patterns from completion history and feedback.
+  \item \textbf{Planning \& Adaptation:} Generate daily schedule; re-plan quickly after disruptions (overruns/new tasks).
+  \item \textbf{Priority Policy:} Combine deadlines, importance, and learned preferences.
+  \item \textbf{Visualization \& Control:} Calendar-style view; drag-and-drop with immediate reconciliation.
+  \item \textbf{Notifications:} Start/stop nudges, conflict alerts, buffer warnings.
+  \item \textbf{Storage:} Local DB (SQLite/PostgreSQL) with export to JSON/CSV.
+\end{itemize}
+
+\section{Constraints, Assumptions, Non-Goals}
+\textbf{Constraints:} No external context integrations (weather/traffic). Single-user setup. Re-planning latency $\leq$ 1.5s for typical day ($\leq$ 40 tasks).\\
+\textbf{Assumptions:} User supplies core task metadata. Energy model starts generic, personalizes over time.\\
+\textbf{Non-Goals:} Cross-user coordination, resource booking, travel routing, mood detection.
+
+\section{Success Metrics}
+\begin{itemize}[leftmargin=1.2cm]
+  \item $\geq$ 25\% fewer deadline violations vs. rule-based baseline.
+  \item $\geq$ 20\% improvement in on-time task starts.
+  \item User satisfaction $\geq$ 4/5 after 7 days.
+\end{itemize}
+
+\clearpage
+\end{document}
